@@ -1,0 +1,97 @@
+body {
+  background: #ffdfcc;
+  color: rgb(95, 67, 67);
+  font-family: Arial, serif;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.calc {
+  background: #ffeeee;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(249, 241, 241, 0.5);
+}
+
+.calc img {
+  position: absolute;
+  top: 0;
+  width: 70px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px;
+  border-radius: 6px;
+  border: none;
+  font-size: 18px;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btns button {
+  flex: 1;
+  padding: 12px;
+  font-size: 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-success {
+  background: #8ee4a9;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.btn-success:hover {
+  background: #7be59d;
+}
+.btn-danger {
+  background: #f09f9f;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.btn-danger:hover {
+  background: #ea8888;
+}
+
+.btn-outline-info {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  font-size: 18px;
+  background: #bfe1f8;
+  color: white;
+  border-radius: 6px;
+  border: 1px solid #bee5ff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-outline-info:hover {
+  background: #add9f6;
+}
+
+.text-bg-light {
+  background: white;
+  color: rgb(65, 55, 55);
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.text-bg-light h4 {
+  font-size: 20px;
+  color: rgb(95, 67, 67);
+  margin-bottom: 5px;
+  margin-top: 0;
+}
