@@ -45,10 +45,13 @@ input {
   cursor: pointer;
 }
 
-.btn-success {
-  background: #8ee4a9;
+.btn {
   color: white;
   transition: background 0.3s ease;
+}
+
+.btn-success {
+  background: #8ee4a9;
 }
 
 .btn-success:hover {
@@ -56,8 +59,6 @@ input {
 }
 .btn-danger {
   background: #f09f9f;
-  color: white;
-  transition: background 0.3s ease;
 }
 
 .btn-danger:hover {
@@ -66,8 +67,6 @@ input {
 
 .btn-product {
   background: #ffdfcc;
-  color: white;
-  transition: background 0.3s ease;
 }
 
 .btn-product:hover {
@@ -76,8 +75,6 @@ input {
 
 .btn-division {
   background: #e9c5ff;
-  color: white;
-  transition: background 0.3s ease;
 }
 
 .btn-division:hover {
