@@ -2,9 +2,10 @@ body {
   background: #ffdfcc;
   color: rgb(95, 67, 67);
   font-family: Arial, serif;
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
   padding-top: 40px;
+  text-align: center;
 }
 
 .calc {
@@ -12,6 +13,10 @@ body {
   padding: 50px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(249, 241, 241, 0.5);
+  max-width: 350px;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
 }
 
 .calc img {
@@ -112,4 +117,8 @@ input {
   color: rgb(95, 67, 67);
   margin-bottom: 5px;
   margin-top: 0;
+}
+
+.link {
+  margin-top: 30px;
 }
