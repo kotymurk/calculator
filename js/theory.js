@@ -61,10 +61,6 @@
 // console.log(array);
 // array[array.length] = 'becon';
 
-const inputElement = document.getElementById('title');
-const createBtn = document.getElementById('create');
-const listElement = document.getElementById('list');
-
 /** 
 // console.log(inputElement.value);
 
@@ -129,78 +125,110 @@ person.hasGirlfriend = true;
 console.log(person[key]);
 person.getFullName();
 */
+const inputElement = document.getElementById('title');
+const createBtn = document.getElementById('create');
+const listElement = document.getElementById('list');
 
-const notes = [
-  {
-    title: 'записать блок про массивы',
-    completed: false,
-  },
-  {
-    title: 'рассказать теорию объектов',
-    completed: true,
-  },
+const modal = document.getElementById('confirmModal');
+const popup = document.getElementById('popup');
+
+const modalClose = document.getElementById('modalClose');
+const cancelDelete = document.getElementById('cancelDelete');
+const confirmDelete = document.getElementById('confirmDelete');
+const closePopup = document.getElementById('closePopup');
+
+let notes = [
+  { title: 'записать блок про массивы', completed: false },
+  { title: 'рассказать теорию объектов', completed: true },
 ];
+
+let noteIndexToDelete = null;
+let popupTimer = null;
 
 function render() {
   listElement.innerHTML = '';
+
   if (notes.length === 0) {
-    listElement.innerHTML = '<p>Нет элементов</p>';
+    listElement.innerHTML = '<li class="list-group-item">Нет элементов</li>';
+    return;
   }
-  for (let i = 0; i < notes.length; i++) {
-    listElement.insertAdjacentHTML('beforeend', getNoteTemplate(notes[i], i));
-  }
-  // for (let note of notes) {
-  //   listElement.insertAdjacentHTML('beforeend', getNoteTemplate(note));
-  // }
+
+  notes.forEach((note, index) => {
+    listElement.insertAdjacentHTML(
+      'beforeend',
+      `
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span class="${note.completed ? 'text-decoration-line-through' : ''}">
+          ${note.title}
+        </span>
+        <span>
+          <button class="btn btn-success btn-sm" data-type="toggle" data-index="${index}">✓</button>
+          <button class="btn btn-danger btn-sm" data-type="remove" data-index="${index}">✕</button>
+        </span>
+      </li>
+    `
+    );
+  });
 }
 
 render();
 
-createBtn.onclick = function () {
-  if (inputElement.value.length === 0) {
-    return;
-  }
-  const newNote = {
+createBtn.onclick = () => {
+  if (!inputElement.value.trim()) return;
+
+  notes.push({
     title: inputElement.value,
     completed: false,
-  };
-  notes.push(newNote);
-  render();
-  //listElement.innerHTML =
-  // listElement.insertAdjacentHTML('beforeend', getNoteTemplate(newNote));
+  });
+
   inputElement.value = '';
+  render();
 };
 
-listElement.onclick = function (event) {
-  if (event.target.dataset.index1) {
-    const index1 = Number(event.target.dataset.index1);
-    const type = event.target.dataset.type;
+listElement.onclick = (event) => {
+  const type = event.target.dataset.type;
+  const index = event.target.dataset.index;
 
-    if (type === 'toggle') {
-      notes[index1].completed = !notes[index1].completed;
-    } else if (type === 'remove') {
-      notes.splice(index1, 1);
-    }
+  if (!type) return;
 
+  if (type === 'toggle') {
+    notes[index].completed = !notes[index].completed;
     render();
+  }
+
+  if (type === 'remove') {
+    noteIndexToDelete = index;
+    modal.classList.remove('hidden');
   }
 };
 
-function getNoteTemplate(note, index1) {
-  return `
-    <li
-     class="list-group-item d-flex justify-content-between
-     align-items-center"
-    >
-     <span class="${note.completed ? 'text-decoration-line-through' : ''}">${
-    note.title
-  }</span>
-     <span>
-         <span class="btn btn-small btn-${
-           note.completed ? 'warning' : 'success'
-         }" data-index1 ="${index1}" data-type="toggle">&check;</span>
-         <span class="btn btn-small btn-danger" data-index1 ="${index1}" data-type="remove">&times;</span>
-     </span>
-   </li>
-  `;
+function closeModal() {
+  modal.classList.add('hidden');
+  noteIndexToDelete = null;
 }
+
+modalClose.onclick = closeModal;
+cancelDelete.onclick = closeModal;
+
+confirmDelete.onclick = () => {
+  if (noteIndexToDelete !== null) {
+    notes.splice(noteIndexToDelete, 1);
+    render();
+  }
+  closeModal();
+  showPopup();
+};
+
+function showPopup() {
+  popup.classList.remove('hidden');
+
+  if (popupTimer) clearTimeout(popupTimer);
+
+  popupTimer = setTimeout(() => {
+    popup.classList.add('hidden');
+  }, 3000);
+}
+
+closePopup.onclick = () => {
+  popup.classList.add('hidden');
+};

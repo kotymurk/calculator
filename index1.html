@@ -10,40 +10,50 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="css/style.css" />
     <script src="js/theory.js" defer></script>
-    <script src="js/array-theory.js" defer></script>
+    <!-- <script src="js/array-theory.js" defer></script> -->
     <title>02. JS Array & Objects</title>
   </head>
-  <body class="bg-dark text-light">
+  <body>
     <div class="container w-50 pt-5">
       <h1>Заметки</h1>
+
       <input
         type="text"
         class="form-control mb-2"
         placeholder="Введите название"
         id="title"
       />
+
       <button class="btn btn-outline-info w-100 mb-2" id="create">
         Добавить
       </button>
 
-      <ul class="list-group list-group-flush" id="list">
-        <!-- <li
-          class="list-group-item d-flex justify-content-between align-items-center"
-        >
-          <span>Название</span>
-          <span>
-            <span class="btn btn-small btn-success">&check;</span>
-            <span class="btn btn-small btn-danger">&times;</span>
-          </span>
-        </li> -->
-      </ul>
+      <ul class="list-group list-group-flush" id="list"></ul>
+    </div>
+
+    <!-- МОДАЛКА -->
+    <div class="my-modal hidden" id="confirmModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Удаление заметки</h3>
+          <button class="icon-btn" id="modalClose">✕</button>
+        </div>
+
+        <p>Вы действительно хотите удалить заметку?</p>
+
+        <div class="modal-actions">
+          <button class="icon-btn" id="cancelDelete">Отмена</button>
+          <button class="icon-btn" id="confirmDelete">Удалить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- POPUP -->
+    <div class="popup hidden" id="popup">
+      <span>Успешно удалено</span>
+      <button class="icon-btn" id="closePopup">✕</button>
     </div>
   </body>
-
-  <div class="link">
-    <a href="index.html">Калькулятор </a>
-    <br />
-    <a href="index2.html">Дата и время </a>
-  </div>
 </html>
